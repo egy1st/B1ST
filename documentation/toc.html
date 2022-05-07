@@ -1,0 +1,544 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<title>B1ST a  Premium Ticketing System- Table of Contents</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.8.0.849">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/silver-theme/jquery-ui-1.8.12.custom.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/dynatree/chm/ui.dynatree.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="css/toc.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#tabs .ui-widget-header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.dynatree.min.js"></script>
+	<script type="text/javascript" src="js/hndjsse.js"></script>
+	<script type="text/javascript">
+	
+		window.bSearchDataLoaded = false;
+		var sHelpIdToActivate = '';
+	
+		$(document).ready(function()
+		{
+			var sAnchorName = '';
+			try { sAnchorName = top.location.href.substring(top.location.href.lastIndexOf("#") + 1, top.location.href.length); }
+			catch(err) { sAnchorName = ''; }
+			var nSelectedTab = 0;
+			if (sAnchorName == '_index') nSelectedTab = 1
+			else if (sAnchorName == '_search') nSelectedTab = 2;			
+			$("#tabs").tabs({
+				selected: nSelectedTab,
+				select: function(event, ui) { HideKwPopup(); }
+			});
+			
+			// Toc
+			if ($("#tab-toc").length) {
+				$("#tab-toc").dynatree({
+					clickFolderMode: 1,
+					debugLevel: 0,
+					imagePath: 'css/dynatree/chm/',
+					onActivate: function(node){
+						if ($("#tab-keywords").length && $("#tab-keywords").dynatree && $("#tab-keywords").dynatree("getTree") && $("#tab-keywords").dynatree("getTree").activateKey)
+							$("#tab-keywords").dynatree("getTree").activateKey(null);
+						if(node.data.href && node.data.href != '#'){
+							window.open(node.data.href, node.data.target);
+						}
+					}
+				});
+				// Expand all nodes if required
+				$("#tab-toc").dynatree("getRoot").visit(function(node){
+						node.expand(true);
+					});
+				// Select the active help id
+				if (sHelpIdToActivate != '') $("#tab-toc").dynatree("getTree").activateKey(sHelpIdToActivate);
+			}
+			
+			// Keywords
+			
+			if ($("#tab-keywords").length) {
+				$("#tab-keywords").dynatree({
+					clickFolderMode: 1,
+					debugLevel: 0,
+					imagePath: 'css/dynatree/chm/',
+					onClick: function(node, event){
+						HideKwPopup();
+						if (node.data && node.data.click)
+						{
+							var aRefList = null;
+							eval('aRefList=' + node.data.click);
+							if (ShowKwPopup(node.li, aRefList))
+							{
+								if ($("#tab-toc") && $("#tab-toc").dynatree && $("#tab-toc").dynatree("getTree") && $("#tab-toc").dynatree("getTree").activateKey)
+									$("#tab-toc").dynatree("getTree").activateKey(null);
+								if(node.data.href && node.data.href != '#'){
+									window.open(node.data.href, node.data.target);
+								}
+							}
+						}
+					}
+				});
+				// Expand all nodes if required
+				$("#tab-keywords").dynatree("getRoot").visit(function(node){
+						node.expand(true);
+					});
+				}
+			
+			// Load search data
+			(function() {
+				var se = document.createElement('script'); se.type = 'text/javascript'; se.async = true;
+				se.src = 'js/hndsd.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(se, s);
+			})();
+		});
+		
+		$('body').click(function() {
+			HideKwPopup();
+		});
+		
+		function SelectTocItem(sHelpId)
+		{
+			if ($("#tab-toc").length && $("#tab-toc").dynatree && $("#tab-toc").dynatree("getTree") && $("#tab-toc").dynatree("getTree").getNodeByKey) {
+				$("#tab-toc").dynatree("getTree").getNodeByKey(sHelpId).activateSilently();
+			}
+			else {
+				sHelpIdToActivate = sHelpId;
+			}
+		}
+		
+		function HideKwPopup()
+		{
+			if($("#popupMenu")) $("#popupMenu").remove();
+		}
+		
+		function ShowKwPopup(oSender, aLinks)
+		{
+			HideKwPopup();
+			if (!aLinks || !aLinks.length || aLinks.length == 0) return false
+			else if (aLinks.length == 1) return true
+			else
+			{
+				var oParentDiv = document.createElement("DIV");
+				oParentDiv.id = "popupMenu";
+				var oLink = null;
+				// Close button
+				oLink = document.createElement("SPAN");
+				oLink.className = "close-button";
+				oLink.innerHTML = "X";
+				oLink.href = "#";
+				oLink.onclick = HideKwPopup;
+				oParentDiv.appendChild(oLink);
+				// Items
+				for (var nCnt=0; nCnt<aLinks.length; nCnt++)
+				{
+					oLink = document.createElement("A");
+					oLink.innerHTML = aLinks[nCnt][0];
+					oLink.href = aLinks[nCnt][1];
+					oLink.target = "FrameMain";
+					oLink.onclick = HideKwPopup;
+					oParentDiv.appendChild(oLink);
+				}
+				document.body.appendChild(oParentDiv);
+				var pos = $(oSender).offset(); 
+				var height = $(oSender).height();
+				$(oParentDiv).css({
+					"left": (pos.left+20) + "px",
+					"top": (pos.top + height + 5) + "px"
+				});
+				$(oParentDiv).show();
+				return false;
+			}
+		}
+		
+		function PerformSearch()
+		{
+			if (!window.bSearchDataLoaded) {
+				$("#search_results").html("Search engine data hasn't been fully loaded yet or an error occurred while loading it. This usually happens when documentation is browsed locally.");
+				return;
+			}
+			sValue = $("#search_value").val();
+			$("#search_results").html('Searching...');
+			var oSearchEngine = new HndJsSe;
+			oSearchEngine.ParseInput(sValue);			
+			oSearchEngine.PerformSearch();
+			if (!oSearchEngine.aResults || !oSearchEngine.aResults.length)
+			{
+				$("#search_results").html('No results found.');
+			}
+			else
+			{
+				$("#search_results").html('<div id="search_results_content"></div>');
+				var oUl = $("#search_results_content").append("<ul id='lr'></ul>").find("ul");
+				for (var nCnt = 0; nCnt < oSearchEngine.aResults.length; nCnt++)
+				{
+					if (oSearchEngine.aResults[nCnt][0] < aTl.length)
+					{
+						oUl.append("<li><a href='" + aTl[oSearchEngine.aResults[nCnt][0]][0] + "?search=" + escape(sValue) + "' target='FrameMain'>" + unescape(aTl[oSearchEngine.aResults[nCnt][0]][1]) + "</a></li>");
+					}
+				}
+				// Tree
+				$("#search_results_content").dynatree({
+					clickFolderMode: 1,
+					debugLevel: 0,
+					imagePath: 'css/dynatree/chm/',
+					onActivate: function(node){
+						if ($("#search_results_content") && $("#search_results_content").dynatree && $("#search_results_content").dynatree("getTree") && $("#search_results_content").dynatree("getTree").activateKey)
+							$("#search_results_content").dynatree("getTree").activateKey(null);
+						if(node.data.href && node.data.href != '#'){
+							window.open(node.data.href, node.data.target);
+						}
+					}
+				});
+			}
+		}
+	</script>
+</head>
+
+<body>
+
+	<div id="tabs">
+		<ul>
+			<li><a href="#tab-toc">Contents</a></li>
+			<li><a href="#tab-keywords">Index</a></li>
+			<li><a href="#tab-search">Search</a></li>
+			</ul>
+		<div id="tab-toc">
+			<ul id="toc" class="">
+
+				<li class="folder" id="Introduction" data="">
+							<a
+							href="Introduction.html"
+							target="FrameMain">
+								Introduction</a>
+
+				<ul><li class="" id="AboutB1STTicketingSystem" data="">
+							<a
+							href="AboutB1STTicketingSystem.html"
+							target="FrameMain">
+								About B1ST Ticketing System</a>
+
+				</li><li class="" id="Whatsnew" data="">
+							<a
+							href="Whatsnew.html"
+							target="FrameMain">
+								What's new</a>
+
+				</li></ul></li><li class="folder" id="GettingStarted" data="">
+							<a
+							href="GettingStarted.html"
+							target="FrameMain">
+								Getting Started</a>
+
+				<ul><li class="" id="Systemrequirements" data="">
+							<a
+							href="Systemrequirements.html"
+							target="FrameMain">
+								System requirements</a>
+
+				</li><li class="" id="Installation" data="">
+							<a
+							href="Installation.html"
+							target="FrameMain">
+								Installation</a>
+
+				</li><li class="" id="Integration" data="">
+							<a
+							href="Integration.html"
+							target="FrameMain">
+								Integration</a>
+
+				</li><li class="" id="Firstlogin" data="">
+							<a
+							href="Firstlogin.html"
+							target="FrameMain">
+								First login</a>
+
+				</li><li class="" id="Modules" data="">
+							<a
+							href="Modules.html"
+							target="FrameMain">
+								Modules</a>
+
+				</li></ul></li><li class="folder" id="AddingBasicData" data="">
+							<a
+							href="AddingBasicData.html"
+							target="FrameMain">
+								Adding Basic Data</a>
+
+				<ul><li class="" id="AddingnewCompany" data="">
+							<a
+							href="AddingnewCompany.html"
+							target="FrameMain">
+								Adding new Company</a>
+
+				</li><li class="" id="AddingnewDepartment" data="">
+							<a
+							href="AddingnewDepartment.html"
+							target="FrameMain">
+								Adding new Department</a>
+
+				</li><li class="" id="AddingTicketsPriorities" data="">
+							<a
+							href="AddingTicketsPriorities.html"
+							target="FrameMain">
+								Adding Ticket's Priorities</a>
+
+				</li></ul></li><li class="folder" id="Ticketing" data="">
+							<a
+							href="Ticketing.html"
+							target="FrameMain">
+								Ticketing</a>
+
+				<ul><li class="" id="AddingTickets" data="">
+							<a
+							href="AddingTickets.html"
+							target="FrameMain">
+								Adding Tickets</a>
+
+				</li><li class="" id="Receivingemailsastickets" data="">
+							<a
+							href="Receivingemailsastickets.html"
+							target="FrameMain">
+								Receiving emails as tickets</a>
+
+				</li><li class="" id="ReceivingTweetsastickets" data="">
+							<a
+							href="ReceivingTweetsastickets.html"
+							target="FrameMain">
+								Receiving Tweets as tickets</a>
+
+				</li><li class="" id="TicketsStatus" data="">
+							<a
+							href="TicketsStatus.html"
+							target="FrameMain">
+								Ticket's Status</a>
+
+				</li><li class="" id="FilteringTickets" data="">
+							<a
+							href="FilteringTickets.html"
+							target="FrameMain">
+								Filtering Tickets</a>
+
+				</li><li class="" id="SearchingforaTicket" data="">
+							<a
+							href="SearchingforaTicket.html"
+							target="FrameMain">
+								Searching for a Ticket</a>
+
+				</li><li class="" id="Statistics" data="">
+							<a
+							href="Statistics.html"
+							target="FrameMain">
+								Statistics</a>
+
+				</li></ul></li><li class="folder" id="ProductsFunctionality" data="">
+							<a
+							href="ProductsFunctionality.html"
+							target="FrameMain">
+								Product's Functionality </a>
+
+				<ul><li class="" id="AddingnewProduct" data="">
+							<a
+							href="AddingnewProduct.html"
+							target="FrameMain">
+								Adding new Product</a>
+
+				</li><li class="" id="AddingFAQs" data="">
+							<a
+							href="AddingFAQs.html"
+							target="FrameMain">
+								Adding FAQs </a>
+
+				</li><li class="" id="CannedMessages" data="">
+							<a
+							href="CannedMessages.html"
+							target="FrameMain">
+								Canned Messages</a>
+
+				</li><li class="" id="KnowledgeBase" data="">
+							<a
+							href="KnowledgeBase.html"
+							target="FrameMain">
+								Knowledge-Base</a>
+
+				</li></ul></li><li class="folder" id="Customization" data="">
+							<a
+							href="Customization.html"
+							target="FrameMain">
+								Customization</a>
+
+				<ul><li class="" id="Themes" data="">
+							<a
+							href="Themes.html"
+							target="FrameMain">
+								Themes</a>
+
+				</li><li class="" id="Languages" data="">
+							<a
+							href="Languages.html"
+							target="FrameMain">
+								Languages</a>
+
+				</li><li class="" id="Responsiveness" data="">
+							<a
+							href="Responsiveness.html"
+							target="FrameMain">
+								Responsiveness</a>
+
+				</li></ul></li><li class="folder" id="ConfigurationSettings" data="">
+							<a
+							href="ConfigurationSettings.html"
+							target="FrameMain">
+								Configuration &amp; Settings</a>
+
+				<ul><li class="" id="Settings" data="">
+							<a
+							href="Settings.html"
+							target="FrameMain">
+								Settings</a>
+
+				</li><li class="" id="HowtoconfigureTS" data="">
+							<a
+							href="HowtoconfigureTS.html"
+							target="FrameMain">
+								How to configure TS</a>
+
+				</li></ul></li><li class="folder" id="SecuritySafety" data="">
+							<a
+							href="SecuritySafety.html"
+							target="FrameMain">
+								Security &amp; Safety</a>
+
+				<ul><li class="" id="BackupdataRestorethem" data="">
+							<a
+							href="BackupdataRestorethem.html"
+							target="FrameMain">
+								Backup data &amp; Restore them</a>
+
+				</li><li class="" id="VirusProtection" data="">
+							<a
+							href="VirusProtection.html"
+							target="FrameMain">
+								Virus Protection</a>
+
+				</li><li class="" id="SpamDetectionprevention" data="">
+							<a
+							href="SpamDetectionprevention.html"
+							target="FrameMain">
+								Spam Detection &amp; prevention</a>
+
+				</li></ul></li><li class="folder" id="AdminsPrivileges" data="">
+							<a
+							href="AdminsPrivileges.html"
+							target="FrameMain">
+								Admins &amp; Privileges</a>
+
+				<ul><li class="" id="AddingAdminUsers" data="">
+							<a
+							href="AddingAdminUsers.html"
+							target="FrameMain">
+								Adding Admin/Users</a>
+
+				</li><li class="" id="SettingPrivileges" data="">
+							<a
+							href="SettingPrivileges.html"
+							target="FrameMain">
+								Setting Privileges</a>
+
+				</li></ul></li><li class="folder" id="Extras" data="">
+							<a
+							href="Extras.html"
+							target="FrameMain">
+								Extras</a>
+
+				<ul><li class="" id="Chatwithclients" data="">
+							<a
+							href="Chatwithclients.html"
+							target="FrameMain">
+								Chat with clients</a>
+
+				</li><li class="" id="MobileVerification" data="">
+							<a
+							href="MobileVerification.html"
+							target="FrameMain">
+								Mobile Verification</a>
+
+				</li><li class="" id="AttachingUploadingFiles" data="">
+							<a
+							href="AttachingUploadingFiles.html"
+							target="FrameMain">
+								Attaching &amp; Uploading Files</a>
+
+				</li><li class="" id="RatingSystem" data="">
+							<a
+							href="RatingSystem.html"
+							target="FrameMain">
+								Rating System</a>
+
+				</li><li class="" id="ResponseTime" data="">
+							<a
+							href="ResponseTime.html"
+							target="FrameMain">
+								Response Time</a>
+
+				</li><li class="" id="AutoRespondMessage" data="">
+							<a
+							href="AutoRespondMessage.html"
+							target="FrameMain">
+								Auto-Respond Message</a>
+
+				</li><li class="" id="grAvatar" data="">
+							<a
+							href="grAvatar.html"
+							target="FrameMain">
+								grAvatar</a>
+
+				</li><li class="" id="reCAPTCHA" data="">
+							<a
+							href="reCAPTCHA.html"
+							target="FrameMain">
+								reCAPTCHA</a>
+
+				</li></ul></li></ul>
+		</div>
+		
+		<div id="tab-keywords">
+			<ul id="keywords">
+
+				<li class="file" data="click:'[]'">
+							<a
+								href="#"
+								target="FrameMain"
+								onClick="[]"
+								>
+								customization</a>
+
+				</li></ul>
+		</div>
+		
+		<div id="tab-search">
+			<form onsubmit="PerformSearch(); return false;">
+				<label for="search_value">Search:</label>
+				<input id="search_value" name="search_value"></input>
+				<input type="submit" value="Search"/>
+			</form>
+			<div id="search_results"></div>
+		</div>
+		
+		</div>
+    
+</body>
+
+</html>
+

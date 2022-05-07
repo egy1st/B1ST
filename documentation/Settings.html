@@ -1,0 +1,138 @@
+﻿<html>
+	
+<head>
+	<title>Settings</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.8.0.849">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "B1ST a  Premium Ticketing System.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Settings");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Settings</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="ConfigurationSettings.html">Configuration &amp; Settings</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="ConfigurationSettings.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="ConfigurationSettings.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="HowtoconfigureTS.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps6"><span class="rvts22">Select </span><span class="rvts23">Settings</span><span class="rvts22"> from </span><span class="rvts23">Tools</span><span class="rvts22"> top menu. Manage Settings window will open with existing Settings list </span><span class="rvts52">Vertical tabs)</span></li>
+</ul>
+<p class="rvps6"><span class="rvts52"><br/></span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/settings1.jpg"></p>
+<p class="rvps6"><span class="rvts52"><br/></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps6"><span class="rvts23">Admin Email</span><span class="rvts22">: which email account will receive emails as tickets.</span></li>
+<li class="rvps6"><span class="rvts23">IMAP Settings</span><span class="rvts22">: settings from email provider that allows this email account to receive emails via IMAP.</span></li>
+<li class="rvps6"><span class="rvts22">Upload Settings: set which type of files user will be able to upload (multiple uploads via frontend &amp; backend)and setting maximum number of uploads at one shot.</span></li>
+<li class="rvps6"><span class="rvts23">Mobile Verification API Settings:</span><span class="rvts22"> &nbsp;</span><span class="rvts53">uses cognalys.com API to verify a mobile number. T</span><span class="rvts22">wo text boxes to enter </span><span class="rvts55">app id</span><span class="rvts22"> &nbsp;and </span><span class="rvts55">access token</span><span class="rvts22">. During registration mobile verification may be required or be optional.</span></li>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside; list-style-type: circle;">
+<li style="margin-left: 0px" class="rvps17"><span class="rvts53">There are three states of any mobile number:</span></li>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside; list-style-type: square;">
+<li style="margin-left: 0px" class="rvps19"><span class="rvts54">Not Correct</span><span class="rvts53">: this means no one can make a call to this number.</span></li>
+<li style="margin-left: 0px" class="rvps19"><span class="rvts54">Correct</span><span class="rvts53">: this means we can call this mobile number, but we need to verify that the user own it, since it may be someone else mobile number.</span></li>
+<li style="margin-left: 0px" class="rvps19"><span class="rvts54">Verified</span><span class="rvts53">: this means we can call the user who own this mobile number.</span></li>
+</ul></ul>
+<li class="rvps6"><span class="rvts23">reCAPTCHA Settings:</span><span class="rvts22"> allows reCAPTCHA in fronend and to define color of reCAPTHA.</span></li>
+<li class="rvps6"><span class="rvts23">Ticket Auto Close Settings:</span><span class="rvts22"> &nbsp;duration for a ticket to close automatically no matter what is its status.</span></li>
+<li class="rvps6"><span class="rvts23">Backup Settings:</span><span class="rvts51">&nbsp;</span><span class="rvts22"> scheduled database backup based on setting option.</span></li>
+<li class="rvps6"><span class="rvts23">Page Settings:</span><span class="rvts22"> default No. of records to show per page.</span></li>
+<li class="rvps6"><span class="rvts23">Ticket Time Settings:</span><span class="rvts22"> - time for posted ticket can be displayed in two different styles</span></li>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside; list-style-type: circle;">
+<li style="margin-left: 0px" class="rvps16"><span class="rvts22">as elapsed time since it was posted</span></li>
+<li style="margin-left: 0px" class="rvps16"><span class="rvts22">as time of posting</span></li>
+</ul>
+<li class="rvps6"><span class="rvts23">Ticket Delete Settings</span><span class="rvts22"> any deletion can be confirmed first of deleted immediately without any warning. </span></li>
+<li class="rvps6"><span class="rvts23">AkisMet Settings</span><span class="rvts22">: enter your AkisMet API</span></li>
+<li class="rvps6"><span class="rvts51">OPSWAT Settings: </span><span class="rvts22">enter your OPSWAT</span><span class="rvts51"> </span><span class="rvts22">credentials</span><span class="rvts51">.</span></li>
+<li class="rvps6"><span class="rvts23">Auto Responder Settings:</span><span class="rvts22"> Sends an Auto-Responded email to user after a ticket is posted if enabled.</span></li>
+<li class="rvps6"><span class="rvts23">Response Time Settings:</span><span class="rvts22"> &nbsp;Sends an Auto-Responded mail to user after ticket post if enable</span></li>
+<li class="rvps6"><span class="rvts23">Twitter API Settings:&nbsp;</span><span class="rvts22"> enter your twitter application credential to allow receiving tweets and posting any of them as tickets.</span></li>
+</ul>
+<p class="rvps6"><span class="rvts51"><br/></span></p>
+<p class="rvps6"><img width="780" height="649" alt="" style="padding : 1px;" src="lib/settings12.jpg"></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/settings23.jpg"></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><img width="783" height="666" alt="" style="padding : 1px;" src="lib/settings3.jpg"></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/settings4.jpg"></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/settings5.jpg"></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/settings6.jpg"></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/settings7.jpg"></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><span class="rvts22"><br/></span></p>
+<p class="rvps6"><span class="rvts51"><br/></span></p>
+<p class="rvps6" style="page-break-before: always;"><span class="rvts51"><br/></span></p>
+<p></p>
+<p class="rvps2"><span class="rvts6">Created with the Personal Edition of HelpNDoc: </span><a class="rvts7" href="http://www.helpndoc.com/create-epub-ebooks">Full-featured EPub generator</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2015  by EgyFirst Software, LLC. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+
